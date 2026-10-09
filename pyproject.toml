@@ -1,0 +1,38 @@
+[project]
+name = "mcd-team-meal-director"
+version = "0.1.0"
+description = "AI-powered team meal planner built with McDonald's China MCP"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Joshua1949" },
+]
+dependencies = [
+    "httpx2>=2.13",
+    "mcp>=1.0",
+    "pydantic>=2.0",
+]
+
+[project.scripts]
+meal-director = "mcd_team_meal_director.cli:main"
+mcd-list-tools = "mcd_team_meal_director.mcp_diagnostic:main"
+mcd-fetch-nutrition = "mcd_team_meal_director.nutrition_diagnostic:main"
+mcd-find-stores = "mcd_team_meal_director.store_diagnostic:main"
+mcd-fetch-menu = "mcd_team_meal_director.menu_diagnostic:main"
+mcd-plan-live = "mcd_team_meal_director.live_plan:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcd_team_meal_director"]
